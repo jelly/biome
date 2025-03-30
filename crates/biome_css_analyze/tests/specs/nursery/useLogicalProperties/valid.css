@@ -1,0 +1,5 @@
+/* should not generate diagnostics */
+a {
+	float: start;
+	inset-block-start: 10px;
+}

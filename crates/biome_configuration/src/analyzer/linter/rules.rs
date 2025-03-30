@@ -3393,6 +3393,10 @@ pub struct Nursery {
     #[doc = "Require for-in loops to include an if statement."]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub use_guard_for_in: Option<RuleConfiguration<biome_js_analyze::options::UseGuardForIn>>,
+    #[doc = "Succinct description of the rule."]
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub use_logical_properties:
+        Option<RuleConfiguration<biome_css_analyze::options::UseLogicalProperties>>,
     #[doc = "Enforce specifying the name of GraphQL operations."]
     #[serde(skip_serializing_if = "Option::is_none")]
     pub use_named_operation:
@@ -3488,6 +3492,7 @@ impl Nursery {
         "useGoogleFontDisplay",
         "useGoogleFontPreconnect",
         "useGuardForIn",
+        "useLogicalProperties",
         "useNamedOperation",
         "useNamingConvention",
         "useParseIntRadix",
@@ -3515,9 +3520,9 @@ impl Nursery {
         RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[46]),
         RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[51]),
         RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[53]),
-        RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[60]),
-        RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[62]),
-        RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[64]),
+        RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[61]),
+        RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[63]),
+        RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[65]),
     ];
     const ALL_RULES_AS_FILTERS: &'static [RuleFilter<'static>] = &[
         RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[0]),
@@ -3588,6 +3593,7 @@ impl Nursery {
         RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[65]),
         RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[66]),
         RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[67]),
+        RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[68]),
     ];
 }
 impl RuleGroupExt for Nursery {
@@ -3899,44 +3905,49 @@ impl RuleGroupExt for Nursery {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[59]));
             }
         }
-        if let Some(rule) = self.use_named_operation.as_ref() {
+        if let Some(rule) = self.use_logical_properties.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[60]));
             }
         }
-        if let Some(rule) = self.use_naming_convention.as_ref() {
+        if let Some(rule) = self.use_named_operation.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[61]));
             }
         }
-        if let Some(rule) = self.use_parse_int_radix.as_ref() {
+        if let Some(rule) = self.use_naming_convention.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[62]));
             }
         }
-        if let Some(rule) = self.use_sorted_classes.as_ref() {
+        if let Some(rule) = self.use_parse_int_radix.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[63]));
             }
         }
-        if let Some(rule) = self.use_strict_mode.as_ref() {
+        if let Some(rule) = self.use_sorted_classes.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[64]));
             }
         }
-        if let Some(rule) = self.use_symbol_description.as_ref() {
+        if let Some(rule) = self.use_strict_mode.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[65]));
             }
         }
-        if let Some(rule) = self.use_trim_start_end.as_ref() {
+        if let Some(rule) = self.use_symbol_description.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[66]));
             }
         }
-        if let Some(rule) = self.use_valid_autocomplete.as_ref() {
+        if let Some(rule) = self.use_trim_start_end.as_ref() {
             if rule.is_enabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[67]));
+            }
+        }
+        if let Some(rule) = self.use_valid_autocomplete.as_ref() {
+            if rule.is_enabled() {
+                index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[68]));
             }
         }
         index_set
@@ -4243,44 +4254,49 @@ impl RuleGroupExt for Nursery {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[59]));
             }
         }
-        if let Some(rule) = self.use_named_operation.as_ref() {
+        if let Some(rule) = self.use_logical_properties.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[60]));
             }
         }
-        if let Some(rule) = self.use_naming_convention.as_ref() {
+        if let Some(rule) = self.use_named_operation.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[61]));
             }
         }
-        if let Some(rule) = self.use_parse_int_radix.as_ref() {
+        if let Some(rule) = self.use_naming_convention.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[62]));
             }
         }
-        if let Some(rule) = self.use_sorted_classes.as_ref() {
+        if let Some(rule) = self.use_parse_int_radix.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[63]));
             }
         }
-        if let Some(rule) = self.use_strict_mode.as_ref() {
+        if let Some(rule) = self.use_sorted_classes.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[64]));
             }
         }
-        if let Some(rule) = self.use_symbol_description.as_ref() {
+        if let Some(rule) = self.use_strict_mode.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[65]));
             }
         }
-        if let Some(rule) = self.use_trim_start_end.as_ref() {
+        if let Some(rule) = self.use_symbol_description.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[66]));
             }
         }
-        if let Some(rule) = self.use_valid_autocomplete.as_ref() {
+        if let Some(rule) = self.use_trim_start_end.as_ref() {
             if rule.is_disabled() {
                 index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[67]));
+            }
+        }
+        if let Some(rule) = self.use_valid_autocomplete.as_ref() {
+            if rule.is_disabled() {
+                index_set.insert(RuleFilter::Rule(Self::GROUP_NAME, Self::GROUP_RULES[68]));
             }
         }
         index_set
@@ -4553,6 +4569,10 @@ impl RuleGroupExt for Nursery {
                 .use_guard_for_in
                 .as_ref()
                 .map(|conf| (conf.level(), conf.get_options())),
+            "useLogicalProperties" => self
+                .use_logical_properties
+                .as_ref()
+                .map(|conf| (conf.level(), conf.get_options())),
             "useNamedOperation" => self
                 .use_named_operation
                 .as_ref()
@@ -4653,6 +4673,7 @@ impl From<GroupPlainConfiguration> for Nursery {
             use_google_font_display: Some(value.into()),
             use_google_font_preconnect: Some(value.into()),
             use_guard_for_in: Some(value.into()),
+            use_logical_properties: Some(value.into()),
             use_named_operation: Some(value.into()),
             use_naming_convention: Some(value.into()),
             use_parse_int_radix: Some(value.into()),

@@ -219,6 +219,7 @@ define_categories! {
     "lint/nursery/useGuardForIn": "https://biomejs.dev/linter/rules/use-guard-for-in",
     "lint/nursery/useImportRestrictions": "https://biomejs.dev/linter/rules/use-import-restrictions",
     "lint/nursery/useJsxCurlyBraceConvention": "https://biomejs.dev/linter/rules/use-jsx-curly-brace-convention",
+    "lint/nursery/useLogicalProperties": "https://biomejs.dev/linter/rules/use-logical-properties",
     "lint/nursery/useNamedOperation": "https://biomejs.dev/linter/rules/use-named-operation",
     "lint/nursery/useNamingConvention": "https://biomejs.dev/linter/rules/use-naming-convention",
     "lint/nursery/useParseIntRadix": "https://biomejs.dev/linter/rules/use-parse-int-radix",

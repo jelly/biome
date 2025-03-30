@@ -1702,6 +1702,10 @@ export interface Nursery {
 	 */
 	useGuardForIn?: RuleConfiguration_for_Null;
 	/**
+	 * Succinct description of the rule.
+	 */
+	useLogicalProperties?: RuleConfiguration_for_Null;
+	/**
 	 * Enforce specifying the name of GraphQL operations.
 	 */
 	useNamedOperation?: RuleFixConfiguration_for_Null;
@@ -3381,6 +3385,7 @@ export type Category =
 	| "lint/nursery/useGuardForIn"
 	| "lint/nursery/useImportRestrictions"
 	| "lint/nursery/useJsxCurlyBraceConvention"
+	| "lint/nursery/useLogicalProperties"
 	| "lint/nursery/useNamedOperation"
 	| "lint/nursery/useNamingConvention"
 	| "lint/nursery/useParseIntRadix"

@@ -7,7 +7,7 @@ use biome_rowan::{AstNode, TextRange};
 use biome_string_case::StrLikeExtension;
 
 declare_lint_rule! {
-    /// Succinct description of the rule.
+    /// Enforce the use of logical properties.
     ///
     /// Put context and details about the rule.
     /// As a starting point, you can take the description of the corresponding _ESLint_ rule (if any).

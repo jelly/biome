@@ -2989,7 +2989,7 @@
 					]
 				},
 				"useLogicalProperties": {
-					"description": "Succinct description of the rule.",
+					"description": "Enforce the use of logical properties.",
 					"anyOf": [
 						{ "$ref": "#/definitions/RuleConfiguration" },
 						{ "type": "null" }

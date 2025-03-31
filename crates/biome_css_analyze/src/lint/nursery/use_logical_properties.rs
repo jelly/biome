@@ -7,14 +7,11 @@ use biome_rowan::{AstNode, TextRange};
 use biome_string_case::StrLikeExtension;
 
 declare_lint_rule! {
-    /// Enforce the use of logical properties.
+    /// Enforce the use of logical properties and values.
     ///
-    /// Put context and details about the rule.
-    /// As a starting point, you can take the description of the corresponding _ESLint_ rule (if any).
+    /// Logical properties are designed to work better when writing styles that work both with
+    /// right-to-left and left-to-right languages. They map to their physical counterparts.
     ///
-    /// Try to stay consistent with the descriptions of implemented rules.
-    ///
-    /// Add a link to the corresponding stylelint rule (if any):
     ///
     /// ## Examples
     ///
@@ -30,7 +27,7 @@ declare_lint_rule! {
     ///
     /// ```css
     /// p {
-    ///   margin-inline-start 1px;
+    ///   margin-inline-start 10px;
     /// }
     /// ```
     ///

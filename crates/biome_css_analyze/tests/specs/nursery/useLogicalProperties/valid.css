@@ -1,0 +1,56 @@
+/* should not generate diagnostics */
+.values1 {
+	text-align: start;
+	float: start;
+}
+
+.values2 {
+	text-align: end;
+	float: end;
+}
+
+.margin {
+	margin-block-start: 10px;
+	margin-inline-end: 10px;
+	margin-block-end: 10px;
+	margin-inline-start: 10px;
+}
+
+.padding {
+	padding-block-start: 10px;
+	padding-inline-end: 10px;
+	padding-block-end: 10px;
+	padding-inline-start: 10px;
+}
+
+.border {
+	border-block-start: 10px;
+	border-block-end: 10px;
+	border-start-start-radius: 10px;
+	border-start-end-radius: 10px;
+	border-end-start-radius: 10px;
+	border-end-end-radius: 10px;
+	border-block-start-color: red;
+	border-block-start-style: dashed;
+	border-block-start-width: 10px;
+	border-block-end-color: red;
+	border-block-end-style: dashed;
+	border-block-end-width: 10px;
+}
+
+.inset {
+	inset-block-start: 10px;
+	inset-block-start: 10px;
+	inset-inline-end: 10px;
+	inset-block-end: 10px;
+	inset-inline-start: 10px;
+}
+
+.block {
+	inline-size: 10px;
+	min-inline-size: 10px;
+	max-inline-size: 10px;
+	block-size: 10px;
+	min-block-size: 10px;
+	max-block-size: 10px;
+}

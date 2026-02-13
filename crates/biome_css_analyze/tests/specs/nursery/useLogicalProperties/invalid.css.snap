@@ -1,0 +1,1046 @@
+---
+source: crates/biome_css_analyze/tests/spec_tests.rs
+assertion_line: 111
+expression: invalid.css
+---
+# Input
+```css
+.values2 {
+	text-align: right;
+}
+
+.margin {
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.padding {
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+.border {
+	border-top: 10px;
+	border-bottom: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-color: red;
+	border-top-style: dashed;
+	border-top-width: 10px;
+	border-bottom-color: red;
+	border-bottom-style: dashed;
+	border-bottom-width: 10px;
+}
+
+.inset {
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	left: 10px;
+}
+
+.block {
+	width: 10px;
+	min-width: 10px;
+	max-width: 10px;
+	height: 10px;
+	min-height: 10px;
+	max-height: 10px;
+}
+
+.foo {
+	.bar {
+			margin-left: 4px;
+			margin-right: 6px;
+	}
+}
+
+```
+
+# Diagnostics
+```
+invalid.css:6:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "margin-block-start" instead of physical property "margin-top".
+  
+    5 │ .margin {
+  > 6 │ 	margin-top: 10px;
+      │ 	^^^^^^^^^^^^^^^^
+    7 │ 	margin-right: 10px;
+    8 │ 	margin-bottom: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "margin-top" and "margin-bottom" into "margin-block"
+  
+     4  4 │   
+     5  5 │   .margin {
+     6    │ - → margin-top:·10px;
+        6 │ + → margin-block:·10px·10px;
+     7  7 │   	margin-right: 10px;
+     8    │ - → margin-bottom:·10px;
+     9  8 │   	margin-left: 10px;
+    10  9 │   }
+  
+
+```
+
+```
+invalid.css:7:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "margin-inline-end" instead of physical property "margin-right".
+  
+    5 │ .margin {
+    6 │ 	margin-top: 10px;
+  > 7 │ 	margin-right: 10px;
+      │ 	^^^^^^^^^^^^^^^^^^
+    8 │ 	margin-bottom: 10px;
+    9 │ 	margin-left: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "margin-right" and "margin-left" into "margin-inline"
+  
+     5  5 │   .margin {
+     6  6 │   	margin-top: 10px;
+     7    │ - → margin-right:·10px;
+        7 │ + → margin-inline:·10px·10px;
+     8  8 │   	margin-bottom: 10px;
+     9    │ - → margin-left:·10px;
+    10  9 │   }
+    11 10 │   
+  
+
+```
+
+```
+invalid.css:8:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "margin-block-end" instead of physical property "margin-bottom".
+  
+     6 │ 	margin-top: 10px;
+     7 │ 	margin-right: 10px;
+   > 8 │ 	margin-bottom: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^
+     9 │ 	margin-left: 10px;
+    10 │ }
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "margin-bottom" and "margin-top" into "margin-block"
+  
+     4  4 │   
+     5  5 │   .margin {
+     6    │ - → margin-top:·10px;
+     7  6 │   	margin-right: 10px;
+     8    │ - → margin-bottom:·10px;
+        7 │ + → margin-block:·10px·10px;
+     9  8 │   	margin-left: 10px;
+    10  9 │   }
+  
+
+```
+
+```
+invalid.css:9:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "margin-inline-start" instead of physical property "margin-left".
+  
+     7 │ 	margin-right: 10px;
+     8 │ 	margin-bottom: 10px;
+   > 9 │ 	margin-left: 10px;
+       │ 	^^^^^^^^^^^^^^^^^
+    10 │ }
+    11 │ 
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "margin-left" and "margin-right" into "margin-inline"
+  
+     5  5 │   .margin {
+     6  6 │   	margin-top: 10px;
+     7    │ - → margin-right:·10px;
+     8  7 │   	margin-bottom: 10px;
+     9    │ - → margin-left:·10px;
+        8 │ + → margin-inline:·10px·10px;
+    10  9 │   }
+    11 10 │   
+  
+
+```
+
+```
+invalid.css:13:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "padding-block-start" instead of physical property "padding-top".
+  
+    12 │ .padding {
+  > 13 │ 	padding-top: 10px;
+       │ 	^^^^^^^^^^^^^^^^^
+    14 │ 	padding-right: 10px;
+    15 │ 	padding-bottom: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "padding-top" and "padding-bottom" into "padding-block"
+  
+    11 11 │   
+    12 12 │   .padding {
+    13    │ - → padding-top:·10px;
+       13 │ + → padding-block:·10px·10px;
+    14 14 │   	padding-right: 10px;
+    15    │ - → padding-bottom:·10px;
+    16 15 │   	padding-left: 10px;
+    17 16 │   }
+  
+
+```
+
+```
+invalid.css:14:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "padding-inline-end" instead of physical property "padding-right".
+  
+    12 │ .padding {
+    13 │ 	padding-top: 10px;
+  > 14 │ 	padding-right: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^
+    15 │ 	padding-bottom: 10px;
+    16 │ 	padding-left: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "padding-right" and "padding-left" into "padding-inline"
+  
+    12 12 │   .padding {
+    13 13 │   	padding-top: 10px;
+    14    │ - → padding-right:·10px;
+       14 │ + → padding-inline:·10px·10px;
+    15 15 │   	padding-bottom: 10px;
+    16    │ - → padding-left:·10px;
+    17 16 │   }
+    18 17 │   
+  
+
+```
+
+```
+invalid.css:15:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "padding-block-end" instead of physical property "padding-bottom".
+  
+    13 │ 	padding-top: 10px;
+    14 │ 	padding-right: 10px;
+  > 15 │ 	padding-bottom: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^^
+    16 │ 	padding-left: 10px;
+    17 │ }
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "padding-bottom" and "padding-top" into "padding-block"
+  
+    11 11 │   
+    12 12 │   .padding {
+    13    │ - → padding-top:·10px;
+    14 13 │   	padding-right: 10px;
+    15    │ - → padding-bottom:·10px;
+       14 │ + → padding-block:·10px·10px;
+    16 15 │   	padding-left: 10px;
+    17 16 │   }
+  
+
+```
+
+```
+invalid.css:16:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "padding-inline-start" instead of physical property "padding-left".
+  
+    14 │ 	padding-right: 10px;
+    15 │ 	padding-bottom: 10px;
+  > 16 │ 	padding-left: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^
+    17 │ }
+    18 │ 
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "padding-left" and "padding-right" into "padding-inline"
+  
+    12 12 │   .padding {
+    13 13 │   	padding-top: 10px;
+    14    │ - → padding-right:·10px;
+    15 14 │   	padding-bottom: 10px;
+    16    │ - → padding-left:·10px;
+       15 │ + → padding-inline:·10px·10px;
+    17 16 │   }
+    18 17 │   
+  
+
+```
+
+```
+invalid.css:20:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-start" instead of physical property "border-top".
+  
+    19 │ .border {
+  > 20 │ 	border-top: 10px;
+       │ 	^^^^^^^^^^^^^^^^
+    21 │ 	border-bottom: 10px;
+    22 │ 	border-top-left-radius: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-top" with "border-block-start"
+  
+    18 18 │   
+    19 19 │   .border {
+    20    │ - → border-top:·10px;
+       20 │ + → border-block-start:·10px;
+    21 21 │   	border-bottom: 10px;
+    22 22 │   	border-top-left-radius: 10px;
+  
+
+```
+
+```
+invalid.css:21:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-end" instead of physical property "border-bottom".
+  
+    19 │ .border {
+    20 │ 	border-top: 10px;
+  > 21 │ 	border-bottom: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^
+    22 │ 	border-top-left-radius: 10px;
+    23 │ 	border-top-right-radius: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-bottom" with "border-block-end"
+  
+    19 19 │   .border {
+    20 20 │   	border-top: 10px;
+    21    │ - → border-bottom:·10px;
+       21 │ + → border-block-end:·10px;
+    22 22 │   	border-top-left-radius: 10px;
+    23 23 │   	border-top-right-radius: 10px;
+  
+
+```
+
+```
+invalid.css:22:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-start-start-radius" instead of physical property "border-top-left-radius".
+  
+    20 │ 	border-top: 10px;
+    21 │ 	border-bottom: 10px;
+  > 22 │ 	border-top-left-radius: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    23 │ 	border-top-right-radius: 10px;
+    24 │ 	border-bottom-left-radius: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-top-left-radius" with "border-start-start-radius"
+  
+    20 20 │   	border-top: 10px;
+    21 21 │   	border-bottom: 10px;
+    22    │ - → border-top-left-radius:·10px;
+       22 │ + → border-start-start-radius:·10px;
+    23 23 │   	border-top-right-radius: 10px;
+    24 24 │   	border-bottom-left-radius: 10px;
+  
+
+```
+
+```
+invalid.css:23:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-start-end-radius" instead of physical property "border-top-right-radius".
+  
+    21 │ 	border-bottom: 10px;
+    22 │ 	border-top-left-radius: 10px;
+  > 23 │ 	border-top-right-radius: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    24 │ 	border-bottom-left-radius: 10px;
+    25 │ 	border-bottom-right-radius: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-top-right-radius" with "border-start-end-radius"
+  
+    21 21 │   	border-bottom: 10px;
+    22 22 │   	border-top-left-radius: 10px;
+    23    │ - → border-top-right-radius:·10px;
+       23 │ + → border-start-end-radius:·10px;
+    24 24 │   	border-bottom-left-radius: 10px;
+    25 25 │   	border-bottom-right-radius: 10px;
+  
+
+```
+
+```
+invalid.css:24:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-end-start-radius" instead of physical property "border-bottom-left-radius".
+  
+    22 │ 	border-top-left-radius: 10px;
+    23 │ 	border-top-right-radius: 10px;
+  > 24 │ 	border-bottom-left-radius: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    25 │ 	border-bottom-right-radius: 10px;
+    26 │ 	border-top-color: red;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-bottom-left-radius" with "border-end-start-radius"
+  
+    22 22 │   	border-top-left-radius: 10px;
+    23 23 │   	border-top-right-radius: 10px;
+    24    │ - → border-bottom-left-radius:·10px;
+       24 │ + → border-end-start-radius:·10px;
+    25 25 │   	border-bottom-right-radius: 10px;
+    26 26 │   	border-top-color: red;
+  
+
+```
+
+```
+invalid.css:25:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-end-end-radius" instead of physical property "border-bottom-right-radius".
+  
+    23 │ 	border-top-right-radius: 10px;
+    24 │ 	border-bottom-left-radius: 10px;
+  > 25 │ 	border-bottom-right-radius: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    26 │ 	border-top-color: red;
+    27 │ 	border-top-style: dashed;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-bottom-right-radius" with "border-end-end-radius"
+  
+    23 23 │   	border-top-right-radius: 10px;
+    24 24 │   	border-bottom-left-radius: 10px;
+    25    │ - → border-bottom-right-radius:·10px;
+       25 │ + → border-end-end-radius:·10px;
+    26 26 │   	border-top-color: red;
+    27 27 │   	border-top-style: dashed;
+  
+
+```
+
+```
+invalid.css:26:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-start-color" instead of physical property "border-top-color".
+  
+    24 │ 	border-bottom-left-radius: 10px;
+    25 │ 	border-bottom-right-radius: 10px;
+  > 26 │ 	border-top-color: red;
+       │ 	^^^^^^^^^^^^^^^^^^^^^
+    27 │ 	border-top-style: dashed;
+    28 │ 	border-top-width: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-top-color" with "border-block-start-color"
+  
+    24 24 │   	border-bottom-left-radius: 10px;
+    25 25 │   	border-bottom-right-radius: 10px;
+    26    │ - → border-top-color:·red;
+       26 │ + → border-block-start-color:·red;
+    27 27 │   	border-top-style: dashed;
+    28 28 │   	border-top-width: 10px;
+  
+
+```
+
+```
+invalid.css:27:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-start-style" instead of physical property "border-top-style".
+  
+    25 │ 	border-bottom-right-radius: 10px;
+    26 │ 	border-top-color: red;
+  > 27 │ 	border-top-style: dashed;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^
+    28 │ 	border-top-width: 10px;
+    29 │ 	border-bottom-color: red;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-top-style" with "border-block-start-style"
+  
+    25 25 │   	border-bottom-right-radius: 10px;
+    26 26 │   	border-top-color: red;
+    27    │ - → border-top-style:·dashed;
+       27 │ + → border-block-start-style:·dashed;
+    28 28 │   	border-top-width: 10px;
+    29 29 │   	border-bottom-color: red;
+  
+
+```
+
+```
+invalid.css:28:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-start-width" instead of physical property "border-top-width".
+  
+    26 │ 	border-top-color: red;
+    27 │ 	border-top-style: dashed;
+  > 28 │ 	border-top-width: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^
+    29 │ 	border-bottom-color: red;
+    30 │ 	border-bottom-style: dashed;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-top-width" with "border-block-start-width"
+  
+    26 26 │   	border-top-color: red;
+    27 27 │   	border-top-style: dashed;
+    28    │ - → border-top-width:·10px;
+       28 │ + → border-block-start-width:·10px;
+    29 29 │   	border-bottom-color: red;
+    30 30 │   	border-bottom-style: dashed;
+  
+
+```
+
+```
+invalid.css:29:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-end-color" instead of physical property "border-bottom-color".
+  
+    27 │ 	border-top-style: dashed;
+    28 │ 	border-top-width: 10px;
+  > 29 │ 	border-bottom-color: red;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^
+    30 │ 	border-bottom-style: dashed;
+    31 │ 	border-bottom-width: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-bottom-color" with "border-block-end-color"
+  
+    27 27 │   	border-top-style: dashed;
+    28 28 │   	border-top-width: 10px;
+    29    │ - → border-bottom-color:·red;
+       29 │ + → border-block-end-color:·red;
+    30 30 │   	border-bottom-style: dashed;
+    31 31 │   	border-bottom-width: 10px;
+  
+
+```
+
+```
+invalid.css:30:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-end-style" instead of physical property "border-bottom-style".
+  
+    28 │ 	border-top-width: 10px;
+    29 │ 	border-bottom-color: red;
+  > 30 │ 	border-bottom-style: dashed;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    31 │ 	border-bottom-width: 10px;
+    32 │ }
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-bottom-style" with "border-block-end-style"
+  
+    28 28 │   	border-top-width: 10px;
+    29 29 │   	border-bottom-color: red;
+    30    │ - → border-bottom-style:·dashed;
+       30 │ + → border-block-end-style:·dashed;
+    31 31 │   	border-bottom-width: 10px;
+    32 32 │   }
+  
+
+```
+
+```
+invalid.css:31:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "border-block-end-width" instead of physical property "border-bottom-width".
+  
+    29 │ 	border-bottom-color: red;
+    30 │ 	border-bottom-style: dashed;
+  > 31 │ 	border-bottom-width: 10px;
+       │ 	^^^^^^^^^^^^^^^^^^^^^^^^^
+    32 │ }
+    33 │ 
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "border-bottom-width" with "border-block-end-width"
+  
+    29 29 │   	border-bottom-color: red;
+    30 30 │   	border-bottom-style: dashed;
+    31    │ - → border-bottom-width:·10px;
+       31 │ + → border-block-end-width:·10px;
+    32 32 │   }
+    33 33 │   
+  
+
+```
+
+```
+invalid.css:35:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "inset-block-start" instead of physical property "top".
+  
+    34 │ .inset {
+  > 35 │ 	top: 10px;
+       │ 	^^^^^^^^^
+    36 │ 	right: 10px;
+    37 │ 	bottom: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "top" and "bottom" into "inset-block"
+  
+    33 33 │   
+    34 34 │   .inset {
+    35    │ - → top:·10px;
+       35 │ + → inset-block:·10px·10px;
+    36 36 │   	right: 10px;
+    37    │ - → bottom:·10px;
+    38 37 │   	left: 10px;
+    39 38 │   }
+  
+
+```
+
+```
+invalid.css:36:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "inset-inline-end" instead of physical property "right".
+  
+    34 │ .inset {
+    35 │ 	top: 10px;
+  > 36 │ 	right: 10px;
+       │ 	^^^^^^^^^^^
+    37 │ 	bottom: 10px;
+    38 │ 	left: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "right" and "left" into "inset-inline"
+  
+    34 34 │   .inset {
+    35 35 │   	top: 10px;
+    36    │ - → right:·10px;
+       36 │ + → inset-inline:·10px·10px;
+    37 37 │   	bottom: 10px;
+    38    │ - → left:·10px;
+    39 38 │   }
+    40 39 │   
+  
+
+```
+
+```
+invalid.css:37:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "inset-block-end" instead of physical property "bottom".
+  
+    35 │ 	top: 10px;
+    36 │ 	right: 10px;
+  > 37 │ 	bottom: 10px;
+       │ 	^^^^^^^^^^^^
+    38 │ 	left: 10px;
+    39 │ }
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "bottom" and "top" into "inset-block"
+  
+    33 33 │   
+    34 34 │   .inset {
+    35    │ - → top:·10px;
+    36 35 │   	right: 10px;
+    37    │ - → bottom:·10px;
+       36 │ + → inset-block:·10px·10px;
+    38 37 │   	left: 10px;
+    39 38 │   }
+  
+
+```
+
+```
+invalid.css:38:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "inset-inline-start" instead of physical property "left".
+  
+    36 │ 	right: 10px;
+    37 │ 	bottom: 10px;
+  > 38 │ 	left: 10px;
+       │ 	^^^^^^^^^^
+    39 │ }
+    40 │ 
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "left" and "right" into "inset-inline"
+  
+    34 34 │   .inset {
+    35 35 │   	top: 10px;
+    36    │ - → right:·10px;
+    37 36 │   	bottom: 10px;
+    38    │ - → left:·10px;
+       37 │ + → inset-inline:·10px·10px;
+    39 38 │   }
+    40 39 │   
+  
+
+```
+
+```
+invalid.css:42:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "inline-size" instead of physical property "width".
+  
+    41 │ .block {
+  > 42 │ 	width: 10px;
+       │ 	^^^^^^^^^^^
+    43 │ 	min-width: 10px;
+    44 │ 	max-width: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "width" with "inline-size"
+  
+    40 40 │   
+    41 41 │   .block {
+    42    │ - → width:·10px;
+       42 │ + → inline-size:·10px;
+    43 43 │   	min-width: 10px;
+    44 44 │   	max-width: 10px;
+  
+
+```
+
+```
+invalid.css:43:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "min-inline-size" instead of physical property "min-width".
+  
+    41 │ .block {
+    42 │ 	width: 10px;
+  > 43 │ 	min-width: 10px;
+       │ 	^^^^^^^^^^^^^^^
+    44 │ 	max-width: 10px;
+    45 │ 	height: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "min-width" with "min-inline-size"
+  
+    41 41 │   .block {
+    42 42 │   	width: 10px;
+    43    │ - → min-width:·10px;
+       43 │ + → min-inline-size:·10px;
+    44 44 │   	max-width: 10px;
+    45 45 │   	height: 10px;
+  
+
+```
+
+```
+invalid.css:44:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "max-inline-size" instead of physical property "max-width".
+  
+    42 │ 	width: 10px;
+    43 │ 	min-width: 10px;
+  > 44 │ 	max-width: 10px;
+       │ 	^^^^^^^^^^^^^^^
+    45 │ 	height: 10px;
+    46 │ 	min-height: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "max-width" with "max-inline-size"
+  
+    42 42 │   	width: 10px;
+    43 43 │   	min-width: 10px;
+    44    │ - → max-width:·10px;
+       44 │ + → max-inline-size:·10px;
+    45 45 │   	height: 10px;
+    46 46 │   	min-height: 10px;
+  
+
+```
+
+```
+invalid.css:45:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "block-size" instead of physical property "height".
+  
+    43 │ 	min-width: 10px;
+    44 │ 	max-width: 10px;
+  > 45 │ 	height: 10px;
+       │ 	^^^^^^^^^^^^
+    46 │ 	min-height: 10px;
+    47 │ 	max-height: 10px;
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "height" with "block-size"
+  
+    43 43 │   	min-width: 10px;
+    44 44 │   	max-width: 10px;
+    45    │ - → height:·10px;
+       45 │ + → block-size:·10px;
+    46 46 │   	min-height: 10px;
+    47 47 │   	max-height: 10px;
+  
+
+```
+
+```
+invalid.css:46:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "min-block-size" instead of physical property "min-height".
+  
+    44 │ 	max-width: 10px;
+    45 │ 	height: 10px;
+  > 46 │ 	min-height: 10px;
+       │ 	^^^^^^^^^^^^^^^^
+    47 │ 	max-height: 10px;
+    48 │ }
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "min-height" with "min-block-size"
+  
+    44 44 │   	max-width: 10px;
+    45 45 │   	height: 10px;
+    46    │ - → min-height:·10px;
+       46 │ + → min-block-size:·10px;
+    47 47 │   	max-height: 10px;
+    48 48 │   }
+  
+
+```
+
+```
+invalid.css:47:2 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "max-block-size" instead of physical property "max-height".
+  
+    45 │ 	height: 10px;
+    46 │ 	min-height: 10px;
+  > 47 │ 	max-height: 10px;
+       │ 	^^^^^^^^^^^^^^^^
+    48 │ }
+    49 │ 
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Replace "max-height" with "max-block-size"
+  
+    45 45 │   	height: 10px;
+    46 46 │   	min-height: 10px;
+    47    │ - → max-height:·10px;
+       47 │ + → max-block-size:·10px;
+    48 48 │   }
+    49 49 │   
+  
+
+```
+
+```
+invalid.css:52:4 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "margin-inline-start" instead of physical property "margin-left".
+  
+    50 │ .foo {
+    51 │ 	.bar {
+  > 52 │ 			margin-left: 4px;
+       │ 			^^^^^^^^^^^^^^^^
+    53 │ 			margin-right: 6px;
+    54 │ 	}
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "margin-left" and "margin-right" into "margin-inline"
+  
+    50 50 │   .foo {
+    51 51 │   	.bar {
+    52    │ - → → → margin-left:·4px;
+    53    │ - → → → margin-right:·6px;
+       52 │ + → → → margin-inline:·6px·4px;
+    54 53 │   	}
+    55 54 │   }
+  
+
+```
+
+```
+invalid.css:53:4 lint/nursery/useLogicalProperties  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Use logical property "margin-inline-end" instead of physical property "margin-right".
+  
+    51 │ 	.bar {
+    52 │ 			margin-left: 4px;
+  > 53 │ 			margin-right: 6px;
+       │ 			^^^^^^^^^^^^^^^^^
+    54 │ 	}
+    55 │ }
+  
+  i Logical properties improve internationalization and adapt to different writing modes.
+  
+  i See MDN Web Docs on CSS Logical Properties for more information.
+  
+  i This rule belongs to the nursery group, which means it is not yet stable and may change in the future. Visit https://biomejs.dev/linter/#nursery for more information.
+  
+  i Safe fix: Combine "margin-right" and "margin-left" into "margin-inline"
+  
+    50 50 │   .foo {
+    51 51 │   	.bar {
+    52    │ - → → → margin-left:·4px;
+    53    │ - → → → margin-right:·6px;
+       52 │ + → → → margin-inline:·6px·4px;
+    54 53 │   	}
+    55 54 │   }
+  
+
+```
